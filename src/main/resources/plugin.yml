@@ -1,0 +1,9 @@
+name: ChunkMiner
+version: ${project.version}
+main: me.swipez.chunkminer.Chunkminer
+api-version: 1.16
+authors: [ notnotnotswipez, YHDiamond ]
+commands:
+  giveallpicks:
+    usage: /giveallpicks
+    description: Gives you all chunk miner picks
