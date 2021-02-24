@@ -6,7 +6,7 @@
 
 # ChunkMiner
 
-This is the source code for the A+ plugin showcased in <PLUGIN LINK>
+This is the source code for the A+ plugin showcased in <https://www.spigotmc.org/resources/tapls-chunk-miner-challenge-recreation-beta.89434/>
 
 Do whatever you want with it.... maybe even contribute :flushed:
 :flushed:
