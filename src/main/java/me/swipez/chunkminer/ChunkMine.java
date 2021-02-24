@@ -53,6 +53,9 @@ public class ChunkMine implements Listener {
                 bacr = 13;
             }
             List<Block> area = getBlocks(e, bup, bout, bacr);
+            if (area.size() <= 1) {
+                return;
+            }
 
             for (Block b : area) {
                 if (b.getType() != Material.BEDROCK && b.getType() != Material.LAVA && b.getType() != Material.WATER && b.getType() != Material.AIR) {
