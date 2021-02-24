@@ -2,17 +2,8 @@ package me.swipez.chunkminer;
 
 import me.swipez.chunkminer.commands.GivePicksCommand;
 import me.swipez.chunkminer.items.ItemManager;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.RecipeChoice;
-import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
 import me.swipez.chunkminer.bstats.Metrics;
-import org.bukkit.scheduler.BukkitTask;
-
-import java.io.PrintStream;
 
 public final class Chunkminer extends JavaPlugin {
 

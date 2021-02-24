@@ -1,7 +1,6 @@
 package me.swipez.chunkminer;
 
 import me.swipez.chunkminer.items.ItemManager;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
