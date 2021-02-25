@@ -1,6 +1,6 @@
 name: ChunkMiner
 version: ${project.version}
-main: me.swipez.chunkminer.Chunkminer
+main: me.swipez.chunkminer.ChunkMiner
 api-version: 1.16
 authors: [ notnotnotswipez, YHDiamond ]
 commands:

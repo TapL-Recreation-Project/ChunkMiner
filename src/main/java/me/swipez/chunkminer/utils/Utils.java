@@ -1,7 +1,5 @@
 package me.swipez.chunkminer.utils;
 
-import org.bukkit.Bukkit;
-
 public class Utils {
     public static String SOUTH = "SOUTH";
     public static String EAST = "EAST";

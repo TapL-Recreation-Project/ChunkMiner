@@ -1,180 +1,104 @@
 package me.swipez.chunkminer.items;
 
-import me.swipez.chunkminer.Chunkminer;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
+import me.swipez.chunkminer.ChunkMiner;
+import me.swipez.chunkminer.utils.ItemBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
+public final class ItemManager {
 
-public class ItemManager {
+    // Super
+    public static final ItemStack SUPER_COBBLESTONE = ItemBuilder.of(Material.COBBLESTONE)
+            .name(ChatColor.DARK_AQUA + "Super Cobblestone")
+            .lore(ChatColor.WHITE + "Requires a " + ChatColor.DARK_AQUA + "Wooden Pickaxe " + ChatColor.WHITE + "to craft a special tool!")
+            .enchantment(Enchantment.CHANNELING, 1)
+            .flags(ItemFlag.HIDE_ENCHANTS)
+            .build();
+    public static final ItemStack SUPER_PICKAXE = ItemBuilder.of(Material.WOODEN_PICKAXE)
+            .name(ChatColor.DARK_AQUA + "Ultimate Wooden Pickaxe")
+            .lore(ChatColor.GRAY + "Chunk I")
+            .enchantment(Enchantment.DURABILITY, 5)
+            .unbreakable()
+            .build();
 
-    public static ItemStack SCobble;
-    public static ItemStack SCpick;
-    public static ItemStack SDCobble;
-    public static ItemStack SDCpick;
-    public static ItemStack SPSCobble;
-    public static ItemStack SPSCpick;
-    public static ItemStack SDSPSCobble;
-    public static ItemStack SDSPSpick;
+    // Super duper
+    public static final ItemStack SUPER_DUPER_COBBLESTONE = ItemBuilder.of(Material.COBBLESTONE)
+            .name(ChatColor.YELLOW + "Super Duper Cobblestone")
+            .lore(ChatColor.WHITE + "Requires a " + ChatColor.YELLOW + "Stone Pickaxe " + ChatColor.WHITE + "to craft a special tool!")
+            .enchantment(Enchantment.CHANNELING, 1)
+            .flags(ItemFlag.HIDE_ENCHANTS)
+            .build();
+    public static final ItemStack SUPER_DUPER_PICKAXE = ItemBuilder.of(Material.STONE_PICKAXE)
+            .name(ChatColor.YELLOW + "Ultimate Stone Pickaxe")
+            .lore(ChatColor.GRAY + "Chunk II")
+            .enchantment(Enchantment.DURABILITY, 5)
+            .unbreakable()
+            .build();
 
-    Chunkminer plugin;
+    // Super pooper scooper
+    public static final ItemStack SUPER_POOPER_SCOOPER_COBBLESTONE = ItemBuilder.of(Material.COBBLESTONE)
+            .name(ChatColor.RED.toString() + ChatColor.BOLD + "Super Pooper Scooper Cobblestone")
+            .lore(ChatColor.WHITE + "Requires a " + ChatColor.RED + ChatColor.BOLD + "Iron Pickaxe " + ChatColor.WHITE + "to craft a special tool!")
+            .enchantment(Enchantment.CHANNELING, 1)
+            .flags(ItemFlag.HIDE_ENCHANTS)
+            .build();
+    public static final ItemStack SUPER_POOPER_SCOOPER_PICKAXE = ItemBuilder.of(Material.IRON_PICKAXE)
+            .name(ChatColor.YELLOW + "Ultimate Iron Pickaxe")
+            .lore(ChatColor.GRAY + "Chunk III")
+            .enchantment(Enchantment.DURABILITY, 5)
+            .unbreakable()
+            .build();
 
-    public ItemManager(Chunkminer plugin) {
-        this.plugin = plugin;
+    // Super duper super pooper
+    public static final ItemStack SUPER_DUPER_SUPER_POOPER_SCOOPER_COBBLESTONE = ItemBuilder.of(Material.COBBLESTONE)
+            .name(ChatColor.DARK_PURPLE.toString() + ChatColor.BOLD + "Super Duper Super Pooper Scooper Cobblestone")
+            .lore(ChatColor.WHITE + "Requires a " + ChatColor.DARK_PURPLE + ChatColor.BOLD + "Diamond Pickaxe " + ChatColor.WHITE + "to craft a special tool!")
+            .enchantment(Enchantment.CHANNELING, 1)
+            .flags(ItemFlag.HIDE_ENCHANTS)
+            .build();
+    public static final ItemStack SUPER_DUPER_SUPER_POOPER_SCOOPER_PICKAXE = ItemBuilder.of(Material.DIAMOND_PICKAXE)
+            .name(ChatColor.YELLOW + "Ultimate Diamond Pickaxe")
+            .lore(ChatColor.GRAY + "Chunk IV")
+            .enchantment(Enchantment.DURABILITY, 5)
+            .unbreakable()
+            .build();
+
+    private ItemManager() { }
+
+    public static void initRecipes(ChunkMiner plugin) {
+        registerCobblestoneRecipe(plugin, "super_cobblestone", SUPER_COBBLESTONE, new ItemStack(Material.COBBLESTONE));
+        registerCobblestoneRecipe(plugin, "super_duper_cobblestone", SUPER_DUPER_COBBLESTONE, SUPER_COBBLESTONE);
+        registerCobblestoneRecipe(plugin, "super_pooper_scooper_cobblestone", SUPER_POOPER_SCOOPER_COBBLESTONE, SUPER_DUPER_COBBLESTONE);
+        registerCobblestoneRecipe(plugin, "super_duper_super_pooper_scooper_cobblestone", SUPER_DUPER_SUPER_POOPER_SCOOPER_COBBLESTONE, SUPER_POOPER_SCOOPER_COBBLESTONE);
+
+        registerPickaxeRecipe(plugin, "super_cobblestone_pickaxe", SUPER_PICKAXE, SUPER_COBBLESTONE, Material.WOODEN_PICKAXE);
+        registerPickaxeRecipe(plugin, "super_duper_cobblestone_pickaxe", SUPER_DUPER_PICKAXE, SUPER_DUPER_COBBLESTONE, Material.STONE_PICKAXE);
+        registerPickaxeRecipe(plugin, "super_pooper_scooper_cobblestone_pickaxe", SUPER_POOPER_SCOOPER_PICKAXE, SUPER_POOPER_SCOOPER_COBBLESTONE, Material.IRON_PICKAXE);
+        registerPickaxeRecipe(plugin, "super_duper_super_pooper_scooper_cobblestone_pickaxe", SUPER_DUPER_SUPER_POOPER_SCOOPER_PICKAXE, SUPER_DUPER_SUPER_POOPER_SCOOPER_COBBLESTONE, Material.DIAMOND_PICKAXE);
     }
 
-    public static void init(){
-        createSCobble();
-        createSCPick();
-        createSDCobble();
-        createSDCPick();
-        createSPSCobble();
-        createSPSCPick();
-        createSDSPSCobble();
-        createSDSPSPick();
-    }
-
-    private static void createSCobble(){
-        ItemStack scobble = new ItemStack(Material.COBBLESTONE, 1);
-        ItemMeta meta = scobble.getItemMeta();
-        meta.addEnchant(Enchantment.CHANNELING, 1, true);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        List<String> lore = new ArrayList<>();
-        lore.add("§fRequires a §3Wooden Pickaxe §fto craft a special tool!");
-        meta.setLore(lore);
-        meta.setDisplayName("§3Super Cobblestone");
-        scobble.setItemMeta(meta);
-        SCobble = scobble;
-
-        ItemStack item = ItemManager.SCobble;
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("scobble"), item);
-        recipe.shape("CCC", "CCC", "CCC");
-        recipe.setIngredient('C', Material.COBBLESTONE);
-
+    @SuppressWarnings("deprecation") // We can ignore the deprecation on ExactChoice. Draft API does not apply here
+    private static void registerCobblestoneRecipe(ChunkMiner plugin, String id, ItemStack cobblestoneResult, ItemStack cobblestoneIngredient) {
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(plugin, id), cobblestoneResult)
+                .shape("CCC", "CCC", "CCC")
+                .setIngredient('C', new RecipeChoice.ExactChoice(cobblestoneIngredient));
         Bukkit.addRecipe(recipe);
     }
-    private static void createSCPick(){
-        ItemStack scpick = new ItemStack(Material.WOODEN_PICKAXE, 1);
-        ItemMeta meta = scpick.getItemMeta();
-        meta.addEnchant(Enchantment.DURABILITY, 5, true);
-        List<String> lore = new ArrayList<>();
-        lore.add("§7Chunk I");
-        meta.setLore(lore);
-        meta.setDisplayName("§3Ultimate Wooden Pickaxe");
-        meta.setUnbreakable(true);
-        scpick.setItemMeta(meta);
-        SCpick = scpick;
 
-        ItemStack item = SCpick;
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("scpick"), item);
-        recipe.shape("CCC", "CPC", "CCC");
-        recipe.setIngredient('C', Material.COBBLESTONE);
-        recipe.setIngredient('P', Material.WOODEN_PICKAXE);
-
+    @SuppressWarnings("deprecation") // We can ignore the deprecation on ExactChoice. Draft API does not apply here
+    private static void registerPickaxeRecipe(ChunkMiner plugin, String id, ItemStack pickaxeResult, ItemStack cobblestoneIngredient, Material pickaxeIngredient) {
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(plugin, id), pickaxeResult)
+                .shape("CCC", "CPC", "CCC")
+                .setIngredient('C', new RecipeChoice.ExactChoice(cobblestoneIngredient))
+                .setIngredient('P', pickaxeIngredient);
         Bukkit.addRecipe(recipe);
     }
-    private static void createSDCobble(){
-        ItemStack sdcobble = new ItemStack(Material.COBBLESTONE, 1);
-        ItemMeta meta = sdcobble.getItemMeta();
-        meta.addEnchant(Enchantment.CHANNELING, 1, true);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        List<String> lore = new ArrayList<>();
-        lore.add("§fRequires a §eStone Pickaxe §fto craft a special tool!");
-        meta.setLore(lore);
-        meta.setDisplayName("§eSuper Duper Cobblestone");
-        sdcobble.setItemMeta(meta);
-        SDCobble = sdcobble;
-    }
-    private static void createSDCPick(){
-        ItemStack sdcpick = new ItemStack(Material.STONE_PICKAXE, 1);
-        ItemMeta meta = sdcpick.getItemMeta();
-        meta.addEnchant(Enchantment.DURABILITY, 5, true);
-        List<String> lore = new ArrayList<>();
-        lore.add("§7Chunk II");
-        meta.setLore(lore);
-        meta.setDisplayName("§eUltimate Stone Pickaxe");
-        meta.setUnbreakable(true);
-        sdcpick.setItemMeta(meta);
-        SDCpick = sdcpick;
 
-        ItemStack item = SDCpick;
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("sdcpick"), item);
-        recipe.shape("CCC", "CPC", "CCC");
-        recipe.setIngredient('C', Material.COBBLESTONE);
-        recipe.setIngredient('P', Material.STONE_PICKAXE);
-
-        Bukkit.addRecipe(recipe);
-    }
-    private static void createSPSCobble(){
-        ItemStack spscobble = new ItemStack(Material.COBBLESTONE, 1);
-        ItemMeta meta = spscobble.getItemMeta();
-        meta.addEnchant(Enchantment.CHANNELING, 1, true);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        List<String> lore = new ArrayList<>();
-        lore.add("§fRequires a §l§4Iron Pickaxe §r§fto craft a special tool!");
-        meta.setLore(lore);
-        meta.setDisplayName("§l§4Super Pooper Scooper Cobblestone");
-        spscobble.setItemMeta(meta);
-        SPSCobble = spscobble;
-    }
-    private static void createSPSCPick(){
-        ItemStack spscpick = new ItemStack(Material.IRON_PICKAXE, 1);
-        ItemMeta meta = spscpick.getItemMeta();
-        meta.addEnchant(Enchantment.DURABILITY, 5, true);
-        List<String> lore = new ArrayList<>();
-        lore.add("§7Chunk III");
-        meta.setLore(lore);
-        meta.setDisplayName("§eUltimate Iron Pickaxe");
-        meta.setUnbreakable(true);
-        spscpick.setItemMeta(meta);
-        SPSCpick = spscpick;
-
-        ItemStack item = SPSCpick;
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("spscpick"), item);
-        recipe.shape("CCC", "CPC", "CCC");
-        recipe.setIngredient('C', Material.COBBLESTONE);
-        recipe.setIngredient('P', Material.IRON_PICKAXE);
-
-        Bukkit.addRecipe(recipe);
-    }
-    private static void createSDSPSCobble(){
-        ItemStack sdspscobble = new ItemStack(Material.COBBLESTONE, 1);
-        ItemMeta meta = sdspscobble.getItemMeta();
-        meta.addEnchant(Enchantment.CHANNELING, 1, true);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        List<String> lore = new ArrayList<>();
-        lore.add("§fRequires a §l§5Diamond Pickaxe §r§fto craft a special tool!");
-        meta.setLore(lore);
-        meta.setDisplayName("§l§5Super Duper Super Pooper Scooper Cobblestone");
-        meta.setUnbreakable(true);
-        sdspscobble.setItemMeta(meta);
-        SDSPSCobble = sdspscobble;
-    }
-    private static void createSDSPSPick(){
-        ItemStack sdspspick = new ItemStack(Material.DIAMOND_PICKAXE, 1);
-        ItemMeta meta = sdspspick.getItemMeta();
-        meta.addEnchant(Enchantment.DURABILITY, 5, true);
-        List<String> lore = new ArrayList<>();
-        lore.add("§7Chunk IV");
-        meta.setLore(lore);
-        meta.setDisplayName("§eUltimate Diamond Pickaxe");
-        meta.setUnbreakable(true);
-        sdspspick.setItemMeta(meta);
-        SDSPSpick = sdspspick;
-
-        ItemStack item = SDSPSpick;
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("sdspcpick"), item);
-        recipe.shape("CCC", "CPC", "CCC");
-        recipe.setIngredient('C', Material.COBBLESTONE);
-        recipe.setIngredient('P', Material.DIAMOND_PICKAXE);
-
-        Bukkit.addRecipe(recipe);
-    }
 }
